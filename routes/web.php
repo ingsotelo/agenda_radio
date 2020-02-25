@@ -1,5 +1,5 @@
 <?php
-
+use App\Agenda;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {	
+    return view('welcome',['agendas' => Agenda::all()]);
 });
+
+Auth::routes();
+Route::resource('agenda', 'AgendaController')->middleware('auth');
